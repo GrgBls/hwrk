@@ -12,3 +12,13 @@ or just run the hwrk.py file.
 # How does it work?
 
 You just type `hwrk` on your terminal and the program starts. You then follow the on-screen guide. It's a really stupid script, but it was a good OOP practice for me.
+
+# Example
+
+> $ hwrk
+
+> Enter (1) to add homework, (2) to view current homework: 1
+
+> Enter subject's name: math
+
+> Enter your homework: exercises 2,3,8 on page 97
