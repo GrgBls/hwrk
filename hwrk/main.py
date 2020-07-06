@@ -1,5 +1,16 @@
-class Subject:
+from sys import argv
+import os
 
+prompt = """
+Usage: hwrk [option] [subject]
+[option]: add, view, remove
+
+example: hwrk view math
+or: hwrk add math "exercises 4,6,7 on page 103"
+or: hwrk remove math
+"""
+
+class Subject:
     def __init__(self, name):
         self.name = name
 
@@ -8,46 +19,52 @@ class Subject:
         fname = self.name + '.txt'
         return fname
 
-    def add(self):
-        print('Enter your homework.')
-        next = input("> ")
-
+    def add(self, homework):
         with open(self.filename, 'a+') as f:
-            f.write(f'\n* {next}')
-            f.close()
+            f.write(f'\n* {homework}')
+            print('Done.')
 
-    def show(self):
-
+    def view(self):
         try:
             with open(self.filename, 'r') as f:
                 print(f.read())
-                input()
-                f.close()
+        except FileNotFoundError:
+            print("You haven't added any homework to that specific subject.")
 
-        except:
-            print("You haven't added any homework on that subject.")
+    def remove(self):
+        try:
+            os.remove(self.filename)
+            print('Done.')
+        except FileNotFoundError:
+            print('Subject hasn\'t been created.')
 
+def main():    
+    if len(argv) == 1:
+        print(prompt)
 
-def main():
+    elif len(argv) > 1:
+        if argv[1] == "view":
+            try:
+                s1 = Subject(argv[2])
+                s1.view()
+            except IndexError:
+                print(prompt)
 
-    print("Enter (1) to add homework, (2) to view current homework.")
-    choice = input("> ")
+        elif argv[1] == "add":
+            try:
+                s1 = Subject(argv[2])
+                s1.add(argv[3])
 
-    if choice == "1":
-        print("Enter subject's name.")
-        name = input("> ")
+            except IndexError:
+                print(prompt)
 
-        s1 = Subject(name)
-        s1.add()
+        elif argv[1] == "remove":
+            try:
+                s1 = Subject(argv[2])
+                s1.remove()
+            except IndexError:
+                print(prompt)
+           
+        else:
+            print(prompt)
 
-
-    elif choice == "2":
-        print("Enter subject's name.")
-        name = input("> ")
-
-        s1 = Subject(name)
-        s1.show()
-
-    else:
-        print("Couldn't understand that.")
-    
