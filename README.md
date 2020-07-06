@@ -7,7 +7,6 @@ Simple python script I made one day while I was having an e-class. I didn't have
 
 > $ pip3 install hwrk
 
-or just run the hwrk.py file.
 
 # How does it work?
 
@@ -15,10 +14,11 @@ You just type `hwrk` on your terminal and the program starts. You then follow th
 
 # Example
 
-> $ hwrk
+To add homework on a subject:
+> $ hwrk add maths "exercise 1 on page 37"
 
-> Enter (1) to add homework, (2) to view current homework: 1
+To view assigned homework on a subject:
+> $ hwrk view maths
 
-> Enter subject's name: math
-
-> Enter your homework: exercises 2,3,8 on page 97
+To delete homework on a subject:
+> $ hwrk remove maths
